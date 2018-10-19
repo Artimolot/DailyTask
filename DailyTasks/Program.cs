@@ -47,9 +47,7 @@ namespace DailyTasks
 						Console.WriteLine("Удаление задания");
 						Console.Write("Введите время задания которое хотите удалить: ");
 						int timeRemove = Convert.ToInt32(Console.ReadLine());
-						Console.Write("Введите полное название задания: ");
-						string nameTaskRemove = Console.ReadLine();
-						task.DeleteTask(timeRemove, nameTaskRemove);
+						task.DeleteTask(timeRemove);
 						Console.WriteLine();
 						break;
 					case "list":

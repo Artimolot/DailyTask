@@ -22,7 +22,7 @@ namespace DailyTasks
 
 		public void AddTask(int time, string nameTask)
 		{
-			if (taskList.Contains(new KeyValuePair<int, string>(time, nameTask)))
+			if (taskList.ContainsKey(time))
 			{
 				failOperation($"На {time}:00, уже есть задание");
 			}
@@ -33,9 +33,9 @@ namespace DailyTasks
 			}
 		}
 
-		public void DeleteTask(int time, string nameTask)
+		public void DeleteTask(int time)
 		{
-			if (taskList.Contains(new KeyValuePair<int, string>(time, nameTask)))
+			if (taskList.ContainsKey(time))
 			{
 				completeOperation($"Задание на {time}:00, удалено");
 				taskList.Remove(time);
