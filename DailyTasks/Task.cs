@@ -22,30 +22,9 @@ namespace DailyTasks
 
 		public void AddTask(int time, string nameTask)
 		{
-			bool inCheck = false;
-			if (taskList.Keys.Count != 0)
+			if (taskList.Contains(new KeyValuePair<int, string>(time, nameTask)))
 			{
-				foreach (KeyValuePair<int, string> key in taskList)
-				{
-					if (key.Key == time)
-					{
-						inCheck = false;
-						break;
-					}
-					else
-					{
-						inCheck = true;
-					}
-				}
-				if (inCheck == true)
-				{
-					completeOperation($"Задание добавлено на: {time}:00");
-					taskList.Add(time, nameTask);
-				}
-				else
-				{
-					failOperation($"На {time}:00, уже есть задание");
-				}
+				failOperation($"На {time}:00, уже есть задание");
 			}
 			else
 			{
@@ -54,36 +33,16 @@ namespace DailyTasks
 			}
 		}
 
-		public void DeleteTask(int time)
+		public void DeleteTask(int time, string nameTask)
 		{
-			bool inCheck = false;
-			if (taskList.Keys.Count != 0)
+			if (taskList.Contains(new KeyValuePair<int, string>(time, nameTask)))
 			{
-				foreach (KeyValuePair<int, string> key in taskList)
-				{
-					if (key.Key != time)
-					{
-						inCheck = false;
-					}
-					else
-					{
-						inCheck = true;
-						break;
-					}
-				}
-				if(inCheck == true)
-				{
-					completeOperation($"Задание на {time}:00, удалено");
-					taskList.Remove(time);
-				}
-				else
-				{
-					failOperation("Невозможно удалить задание, на такое время нет задания");
-				}
+				completeOperation($"Задание на {time}:00, удалено");
+				taskList.Remove(time);
 			}
 			else
 			{
-				Console.WriteLine("Список пуст!");
+				failOperation("Невозможно удалить задание, на такое время нет задания");
 			}
 		}
 
